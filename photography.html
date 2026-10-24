@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natalie Tan — Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="index.html">Natalie Tan</a>
+  <a class="header-email" href="mailto:nataliekyiann@gmail.com">nataliekyiann@gmail.com</a>
+  <nav class="site-nav">
+    <a href="writing.html">Writing</a>
+    <a href="photography.html" class="current">Photography</a>
+    <a href="cv.html">CV</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-intro">
+    <p>I’ve done my fair share of social media video and <a class="intro-link" href="https://open.spotify.com/show/39UsLzTlAdCV25Qgzk63Dt?si=968b66921dc54b9e" target="_blank" rel="noopener">podcasting</a>, but photography remains my favourite form of multimedia storytelling. I shoot with an eye for community and companionship.</p>
+    <div class="buttons">
+      <a class="btn" href="https://www.instagram.com/natalietanwrites" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </section>
+
+  <!--
+    HOW TO ADD PHOTOS:
+    1. Upload your photos to the "images" folder in your GitHub repo.
+    2. Make sure each file name below matches your photo exactly
+       (capital letters and .jpg vs .jpeg matter!).
+    3. To add more photos, copy a whole <button>...</button> block and change the file name.
+    The "alt" text describes the photo for screen readers — edit it to suit.
+  -->
+
+  <section class="photo-grid">
+    <button class="photo"><img src="images/photo-1.jpg" alt="Three friends sitting against a stone wall in Oxford, sharing a drawing" loading="lazy"></button>
+    <button class="photo"><img src="images/photo-2.jpg" alt="A photographer pitchside at a football match as a player takes a corner" loading="lazy"></button>
+    <button class="photo"><img src="images/photo-3.jpg" alt="Football fans outside a stadium, one wrapped in a Kazakhstan flag" loading="lazy"></button>
+    <button class="photo"><img src="images/photo-4.jpg" alt="A crowd in festival dress and straw hats on a Japanese street" loading="lazy"></button>
+    <button class="photo"><img src="images/photo-5.jpg" alt="Festival organisers in white happi coats outside a shopping arcade" loading="lazy"></button>
+    <button class="photo"><img src="images/photo-6.jpg" alt="A lone fisherman on rocks by the sea" loading="lazy"></button>
+  </section>
+</main>
+
+<div class="lightbox" aria-hidden="true">
+  <button class="close" aria-label="Close">×</button>
+  <button class="prev" aria-label="Previous photo">‹</button>
+  <img src="" alt="">
+  <button class="next" aria-label="Next photo">›</button>
+</div>
+<script>
+const photos=[...document.querySelectorAll('.photo img')], box=document.querySelector('.lightbox'), big=box.querySelector('img'); let cur=0;
+function show(i){cur=(i+photos.length)%photos.length;big.src=photos[cur].src;big.alt=photos[cur].alt;box.classList.add('open');}
+function close(){box.classList.remove('open');}
+photos.forEach((img,i)=>img.parentElement.addEventListener('click',()=>show(i)));
+box.querySelector('.close').onclick=close;
+box.querySelector('.prev').onclick=e=>{e.stopPropagation();show(cur-1);};
+box.querySelector('.next').onclick=e=>{e.stopPropagation();show(cur+1);};
+box.addEventListener('click',e=>{if(e.target===box)close();});
+document.addEventListener('keydown',e=>{if(!box.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1);});
+</script>
+</body>
+</html>
